@@ -1,31 +1,30 @@
-import { Modal } from "../Modal/Modal"
-import { Component } from "react"
-import styles from './ImageGalleryItem.module.css'
+import { Modal } from '../Modal/Modal';
+import { Component } from 'react';
+import styles from './ImageGalleryItem.module.css';
 
 export class ImageGalleryItem extends Component {
-  state={
+  state = {
     isOpenModal: false,
-  }
+  };
   handleToggleModal = () => {
-    this.setState(prevState => ({isOpenModal: !prevState.isOpenModal
+    this.setState(prevState => ({ isOpenModal: !prevState.isOpenModal }));
+  };
 
-    }))
-  }
-
-  render() { 
+  render() {
     const { image, tag, largeImage } = this.props;
     return (
-    <li className={styles.ImageGalleryItem} >
-  <img 
-  onClick={this.handleToggleModal}
-  className={styles.ImageGalleryItemImage}
-   src={image}
-   alt={tag} />
+      <li className={styles.ImageGalleryItem}>
+        <img
+          onClick={this.handleToggleModal}
+          className={styles.ImageGalleryItemImage}
+          src={image}
+          alt={tag}
+        />
 
-  {this.state.isOpenModal && (
-  <Modal picture={largeImage} onClose={this.handleToggleModal}/>)}
-</li>
-  )
+        {this.state.isOpenModal && (
+          <Modal picture={largeImage} onClose={this.handleToggleModal} />
+        )}
+      </li>
+    );
   }
-  
 }

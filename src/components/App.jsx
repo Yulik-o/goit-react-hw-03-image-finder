@@ -23,46 +23,39 @@ export class App extends Component {
     if (query !== prevState.query || page !== prevState.page) {
       this.setState({ isLoading: true });
       try {
-        
-      const response = await requestImages({ query, page })
-      this.setState({
-        totalHits: response.totalHits,
-      images: page === 1 ? response.hits : [...this.state.images, ...response.hits],
-    })
+        const response = await requestImages({ query, page });
+        this.setState({
+          totalHits: response.totalHits,
+          images:
+            page === 1
+              ? response.hits
+              : [...this.state.images, ...response.hits],
+        });
       } catch (error) {
         this.setState({ error: error.message });
       } finally {
         this.setState({ isLoading: false });
       }
-      }
-        }
-
-
-
+    }
+  }
 
   formSubmitHandler = query => {
-    this.setState({ query, page: 1})
-  }
+    this.setState({ query, page: 1 });
+  };
   handleLoadMore = () => {
-    this.setState(prevState => ({page: prevState.page + 1, }))
-    
-  }
+    this.setState(prevState => ({ page: prevState.page + 1 }));
+  };
   render() {
     const { images, isLoading, totalHits } = this.state;
     return (
       <>
-        <SearchBar 
-        formSubmitHandler={this.formSubmitHandler}
-         />
-        <ImageGallery
-         images={images}
-         totalHits={totalHits} />
+        <SearchBar formSubmitHandler={this.formSubmitHandler} />
+        <ImageGallery images={images} totalHits={totalHits} />
         {isLoading && <Loader />}
-        {Math.floor(totalHits / this.state.perPage) > 1 &&
-        <Button onClick={this.handleLoadMore}/>}
-
+        {Math.floor(totalHits / this.state.perPage) > 1 && (
+          <Button onClick={this.handleLoadMore} />
+        )}
       </>
     );
   }
-
 }

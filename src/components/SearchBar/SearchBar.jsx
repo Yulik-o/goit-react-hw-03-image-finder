@@ -1,7 +1,6 @@
 import { Component } from 'react';
-import { ImSearch } from "react-icons/im";
+import { ImSearch } from 'react-icons/im';
 import styles from './SearchBar.module.css';
-
 
 export class SearchBar extends Component {
   state = {
@@ -13,17 +12,21 @@ export class SearchBar extends Component {
   handleSubmit = event => {
     event.preventDefault();
     this.props.formSubmitHandler(this.state.query);
-    this.setState({query: ''});
+    this.setState({ query: '' });
   };
-  
+
   render() {
     return (
       <header className={styles.SearchBar}>
         <form className={styles.SearchForm} onSubmit={this.handleSubmit}>
           <button type="submit" className={styles.SearchFormButton}>
-            <span> <ImSearch size="18px" 
-            // className={styles.SearchFormButtonLabel}
-            /></span>
+            <span>
+              {' '}
+              <ImSearch
+                size="18px"
+                // className={styles.SearchFormButtonLabel}
+              />
+            </span>
           </button>
 
           <input
