@@ -22,7 +22,7 @@ export class ImageGalleryItem extends Component {
         />
 
         {this.state.isOpenModal && (
-          <Modal picture={largeImage} onClose={this.handleToggleModal} />
+          <Modal largeImage={largeImage} onClose={this.handleToggleModal} />
         )}
       </li>
     );
