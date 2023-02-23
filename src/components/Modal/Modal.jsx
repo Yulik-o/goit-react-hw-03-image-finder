@@ -30,3 +30,11 @@ export class Modal extends Component {
     );
   }
 }
+Modal.propTypes = {
+  tag: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
+  largeImage: PropTypes.string.isRequired,
+  onClick: PropTypes.func,
+  onClose: PropTypes.func,
+
+}
